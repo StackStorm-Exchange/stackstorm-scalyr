@@ -1,0 +1,5 @@
+# Scalyr API base URL
+url: https://www.scalyr.com/api
+
+# Get your Scalyr API key at https://www.scalyr.com/keys
+token: addyourscalyrtokenhere
