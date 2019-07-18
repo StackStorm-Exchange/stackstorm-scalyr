@@ -1,0 +1,12 @@
+---
+  url:
+    description: Scalyr base base URL
+    type: string
+    required: true
+    default: https://www.scalyr.com/api
+    secret: false
+  token:
+    description: "Scalyr API token. Find one at https://www.scalyr.com/keys"
+    type: "string"
+    required: true
+    secret: true

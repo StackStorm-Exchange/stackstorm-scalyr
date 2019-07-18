@@ -8,7 +8,8 @@ parameters:
     filter:
       type: string
       description: "Filter matching events using Scalyr expressions. None or emptry string match all events."
-      required: False
+      required: True
+      default: ""
     maxCount:
       type: integer
       description: "Maximum number of records to return."
@@ -19,3 +20,7 @@ parameters:
     toTime:
       type: string
       description: "End of time interval, in variety of formats, e.g. 11:30, see https://www.scalyr.com/help/time-reference"
+    token:
+      type: string
+      description: "API token, that overrides the one provided by the config.yaml"
+      secret: True
