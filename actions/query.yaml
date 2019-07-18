@@ -3,11 +3,11 @@ name: query
 pack: scalyr
 runner_type: python-script
 description: "Query Scalyr to get logs. See https://www.scalyr.com/help/api#query"
-entry_point: "query.py"
+entry_point: query.py
 parameters:
     filter:
       type: string
-      description: "Filter matching events using Scalyr expressions. None or emptry string match all events."
+      description: "Filter matching events using Scalyr expressions. None or empty string match all events."
       required: True
       default: ""
     maxCount:
