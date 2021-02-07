@@ -14,12 +14,22 @@ parameters:
       type: integer
       description: "Maximum number of records to return."
       default: 100
-    fromTime:
+    startTime:
       type: string
       description: "Start of time interval, in variety of formats, e.g. 10:30, see https://www.scalyr.com/help/time-reference"
-    toTime:
+    endTime:
       type: string
       description: "End of time interval, in variety of formats, e.g. 11:30, see https://www.scalyr.com/help/time-reference"
+    columns:
+      type: string
+      description: " specifies which fields to return for each log message, as a comma-delimited list. Omit this parameter (or pass an empty string) to return all fields."
+    priority:
+      type: string
+      default: low
+      enum:
+        - "low"
+        - "high"
+      description: "Query priority."
     token:
       type: string
       description: "API token, that overrides the one provided by the config.yaml"
