@@ -7,6 +7,8 @@
   and ``columns`` parameter.
 - Add new ``scalyr.power_query`` action.
 - Add new ``scalyr.timeseries_query`` action.
+- Add new ``scalyr.timeseries_queries`` action.
+- Add new action aliases.
 
 ## v0.0.1
 
