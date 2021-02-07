@@ -1,0 +1,28 @@
+---
+name: power_query
+pack: scalyr
+runner_type: python-script
+description: "Run Scalyr PowerQuery"
+entry_point: power_query.py
+parameters:
+    query:
+      type: string
+      description: "Query to execute in PowerQuery language"
+      required: True
+    startTime:
+      type: string
+      description: "Start of time interval, in variety of formats, e.g. 10:30, see https://www.scalyr.com/help/time-reference"
+    endTime:
+      type: string
+      description: "End of time interval, in variety of formats, e.g. 11:30, see https://www.scalyr.com/help/time-reference"
+    priority:
+      type: string
+      default: low
+      enum:
+        - "low"
+        - "high"
+      description: "Query priority."
+    token:
+      type: string
+      description: "API token, that overrides the one provided by the config.yaml"
+      secret: True
