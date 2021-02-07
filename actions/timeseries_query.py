@@ -46,10 +46,15 @@ class TimeseriesQueryAction(Action):
         url = self.config['url'] + "/timeseriesQuery"
 
         headers = {"Content-Type": "application/json"}
-        results = requests.request('POST', url=url, headers=headers, data=json.dumps(data))
+        response = requests.request('POST', url=url, headers=headers, data=json.dumps(data))
 
-        ok = results.ok
-        self.logger.debug("Request {}, fetched {}".format("OK" if ok else "failed", results.text))
-        results = results.json() if ok else results.text
-        self.logger.info("Fetched {}".format(results))
-        return (ok, results)
+        ok = response.ok
+        self.logger.debug("Request {}, fetched {}".format("OK" if ok else "failed", response.text))
+
+        try:
+            result = response.json()
+        except Exception:
+            result = response.text
+
+        self.logger.info("Fetched {}".format(result))
+        return (ok, result)
