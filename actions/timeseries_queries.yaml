@@ -1,0 +1,38 @@
+---
+name: timeseries_queries
+pack: scalyr
+runner_type: python-script
+description: "Run multiple Scalyr timeseries queries"
+entry_point: timeseries_queries.py
+parameters:
+    queries:
+      description: "Timeseries query objects to execute"
+      type: array
+      items:
+        type: object
+        additionalProperties: false
+        properties:
+          filter:
+            type: string
+            required: true
+          function:
+            type: string
+          startTime:
+            type: string
+            default: "10 minutes"
+          endTime:
+            type: string
+          buckets:
+            type: integer
+            default: 1
+          priority:
+            type: string
+            enum:
+              - "low"
+              - "high"
+            default: "low"
+      required: True
+    token:
+      type: string
+      description: "API token, that overrides the one provided by the config.yaml"
+      secret: True
