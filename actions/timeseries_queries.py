@@ -16,7 +16,7 @@ class TimeseriesQueryAction(Action):
         }
 
         for query in queries:
-            # Each item can container: filter, function, startTinme, endTime, buckets, priority
+            # Each item can contain: filter, function, startTinme, endTime, buckets, priority
             query_item = {}
 
             if query.get("filter", None):
