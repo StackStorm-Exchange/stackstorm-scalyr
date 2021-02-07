@@ -1,0 +1,34 @@
+---
+name: timeseries_query
+pack: scalyr
+runner_type: python-script
+description: "Run Scalyr timeseries query"
+entry_point: timeseries_query.py
+parameters:
+    filter:
+      type: string
+      description: "Timeseries query to execute"
+      required: True
+    function:
+      type: string
+      description: "Optional function to run"
+    startTime:
+      type: string
+      description: "Start of time interval, in variety of formats, e.g. 10:30, see https://www.scalyr.com/help/time-reference"
+    endTime:
+      type: string
+      description: "End of time interval, in variety of formats, e.g. 11:30, see https://www.scalyr.com/help/time-reference"
+    buckets:
+      type: integer
+      description: "Number of result buckets."
+    priority:
+      type: string
+      default: low
+      enum:
+        - "low"
+        - "high"
+      description: "Query priority."
+    token:
+      type: string
+      description: "API token, that overrides the one provided by the config.yaml"
+      secret: True
