@@ -26,16 +26,16 @@ class TimeseriesQueryAction(Action):
                 query_item["function"] = query["function"]
 
             if query.get("startTime", None):
-                query_item["startTime"] =  query["startTime"]
+                query_item["startTime"] = query["startTime"]
 
             if query.get("endTime", None):
-                query_item["endTime"] =  query["endTime"]
+                query_item["endTime"] = query["endTime"]
 
             if query.get("buckets", None):
-                query_item["buckets"] =  query["buckets"]
+                query_item["buckets"] = query["buckets"]
 
             if query.get("priority", None):
-                query_item["priority"] =  query["priority"]
+                query_item["priority"] = query["priority"]
 
             data["queries"].append(query_item)
 
