@@ -1,16 +1,25 @@
-import json
-import copy
+# Copyright 2020 The StackStorm Authors.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
 
-import requests
-
-from st2common.runners.base_action import Action
+from base import BaseScalyrAction
 
 __all__ = ['TimeseriesQueryAction']
 
 
-class TimeseriesQueryAction(Action):
+class TimeseriesQueryAction(BaseScalyrAction):
     def run(self, filter, function=None, startTime=None, endTime=None, buckets=None,
-            priority="low", token=None):
+            priority="low", api_url, token=None):
         data = {
             "queries": [{}]
         }
@@ -33,28 +42,6 @@ class TimeseriesQueryAction(Action):
         if priority:
             data["queries"][0]["priority"] = priority
 
-        if not token:
-            data["token"] = self.config["token"]
-
-        kwargs_to_log = copy.copy(data)
-
-        if "token" in kwargs_to_log:
-            kwargs_to_log["token"] = "************"
-
-        self.logger.info("Called with {0}".format(kwargs_to_log))
-
-        url = self.config['url'] + "/timeseriesQuery"
-
-        headers = {"Content-Type": "application/json"}
-        response = requests.request('POST', url=url, headers=headers, data=json.dumps(data))
-
-        ok = response.ok
-        self.logger.debug("Request {}, fetched {}".format("OK" if ok else "failed", response.text))
-
-        try:
-            result = response.json()
-        except Exception:
-            result = response.text
-
-        self.logger.info("Fetched {}".format(result))
+        ok, result = self._send_api_request(path="/timeseriesQuery", data=data, api_url=api_url,
+                                            token=token)
         return (ok, result)

@@ -22,6 +22,9 @@ parameters:
         - "low"
         - "high"
       description: "Query priority."
+    api_url:
+      type: string
+      description: "API url, that overrides the one provided by the config.yaml"
     token:
       type: string
       description: "API token, that overrides the one provided by the config.yaml"
