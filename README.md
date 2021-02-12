@@ -10,8 +10,8 @@ Copy the example configuration in scalyr.yaml.example to /opt/stackstorm/configs
 Find or create your api token at [https://www.scalyr.com/keys](https://www.scalyr.com/keys)
 Place an API token to the config file at `/opt/stackstorm/configs/scalyr.yaml`. It should look like this:
 
-
-    url: "https://www.scalyr.com/api"
+    url: "https://app.scalyr.com/api"
+    # Or https://app.ap.scalyr.com/api for Scalyr EU environment
     token: "73ce4a24b5553d2e482ea8a8500e71b8ad4554f-"
 
 Reload configuration. Remember to do it every time when config is changed.
