@@ -20,8 +20,10 @@ Reload configuration. Remember to do it every time when config is changed.
 
 ### Actions
 
-... description coming soon
-
+* ``scalyr.query`` - Run a Scalyr search query.
+* ``scalyr.power_query`` - Run a Scalyr power query.
+* ``scalyr.timeseries_query`` - Run a single Scalyr timeseries query.
+* ``scalyr.timeseries_queries`` - Run multiple Scalyr timeseries queries.
 
 ### Configuring Scalyr Alarms to trigger StackStorm actions
 
