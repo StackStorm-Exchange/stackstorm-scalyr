@@ -12,6 +12,10 @@
 - In addition to ``token`` also allow base API endpoint url to be overriden on action
   execution basis using ``api_url`` action parameter.
 
+## 1.0.0
+
+* Drop Python 2.7 support
+
 ## v0.0.1
 
 - Initial release.
