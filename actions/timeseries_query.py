@@ -19,7 +19,7 @@ __all__ = ['TimeseriesQueryAction']
 
 class TimeseriesQueryAction(BaseScalyrAction):
     def run(self, filter, function=None, startTime=None, endTime=None, buckets=None,
-            priority="low", api_url, token=None):
+            priority="low", api_url=None, token=None):
         data = {
             "queries": [{}]
         }
