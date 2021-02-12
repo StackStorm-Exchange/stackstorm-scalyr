@@ -1,6 +1,6 @@
 # Change Log
 
-## v0.1.0
+## v1.1.0
 
 - Fix ``scalyr.query`` action so it works correctly. Also fix parameter name from
   ``fromTime`` / ``toTime`` to ``startTime`` / ``endTime`` and add new ``priority``
@@ -14,7 +14,7 @@
 
 ## 1.0.0
 
-* Drop Python 2.7 support
+- Drop Python 2.7 support
 
 ## v0.0.1
 
