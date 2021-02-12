@@ -18,6 +18,10 @@ Reload configuration. Remember to do it every time when config is changed.
 
     st2ctl reload --register-configs
 
+You can also use a different API url or token for a specific action execution (aka override
+default values from the config on action execution basis), by passing ``api_url`` / ``token``
+parameter to the action.
+
 ### Actions
 
 * ``scalyr.query`` - Run a Scalyr search query.
