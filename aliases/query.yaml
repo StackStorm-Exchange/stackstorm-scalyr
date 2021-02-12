@@ -1,0 +1,25 @@
+---
+name: "scalyr_query"
+pack: "scalyr"
+action_ref: "scalyr.query"
+description: "Run Scalyr search query."
+formats:
+    - "scalyr query {{ filter }}"
+    - "scalyr search {{ filter }}"
+result:
+  format: |
+    Results for query *{{execution.parameters.filter}}*:
+
+    {% if execution.status != "succeeded" -%}
+      Execution failed: {{ execution.result.result.message }}
+    {% else -%}
+      {% if execution.result.result.matches|length == 0 -%}
+        No results found.
+      {% else -%}
+      {% for match in execution.result.result.matches -%}
+        Message: {{ match.message }}
+      {%+ endfor %}
+      {% endif %}
+    {% endif %}
+immutable_parameters:
+  maxCount: 10

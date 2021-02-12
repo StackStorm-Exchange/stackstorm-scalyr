@@ -14,24 +14,34 @@
 
 from base import BaseScalyrAction
 
-__all__ = ['QueryAction']
+__all__ = ['TimeseriesQueryAction']
 
 
-class QueryAction(BaseScalyrAction):
-    def run(self, filter="", maxCount=100, startTime=None, endTime=None, columns=None,
+class TimeseriesQueryAction(BaseScalyrAction):
+    def run(self, filter, function=None, startTime=None, endTime=None, buckets=None,
             priority="low", api_url=None, token=None):
         data = {
-            "queryType": "log",
-            "filter": filter,
-            "maxCount": maxCount,
+            "queries": [{}]
         }
 
+        if filter:
+            data["queries"][0]["filter"] = filter
+
+        if function:
+            data["queries"][0]["function"] = function
+
         if startTime:
-            data["startTime"] = startTime
+            data["queries"][0]["startTime"] = startTime
 
         if endTime:
-            data["endTime"] = startTime
+            data["queries"][0]["endTime"] = startTime
 
-        ok, result = self._send_api_request(path="/query", data=data, api_url=api_url,
+        if buckets:
+            data["queries"][0]["buckets"] = buckets
+
+        if priority:
+            data["queries"][0]["priority"] = priority
+
+        ok, result = self._send_api_request(path="/timeseriesQuery", data=data, api_url=api_url,
                                             token=token)
         return (ok, result)

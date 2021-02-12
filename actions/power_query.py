@@ -14,16 +14,14 @@
 
 from base import BaseScalyrAction
 
-__all__ = ['QueryAction']
+__all__ = ['PowerQueryAction']
 
 
-class QueryAction(BaseScalyrAction):
-    def run(self, filter="", maxCount=100, startTime=None, endTime=None, columns=None,
-            priority="low", api_url=None, token=None):
+class PowerQueryAction(BaseScalyrAction):
+    def run(self, query, startTime=None, endTime=None, columns=None, priority="low", api_url=None,
+            token=None):
         data = {
-            "queryType": "log",
-            "filter": filter,
-            "maxCount": maxCount,
+            "query": query,
         }
 
         if startTime:
@@ -32,6 +30,6 @@ class QueryAction(BaseScalyrAction):
         if endTime:
             data["endTime"] = startTime
 
-        ok, result = self._send_api_request(path="/query", data=data, api_url=api_url,
+        ok, result = self._send_api_request(path="/powerQuery", data=data, api_url=api_url,
                                             token=token)
         return (ok, result)

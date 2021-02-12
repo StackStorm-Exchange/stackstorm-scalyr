@@ -1,0 +1,23 @@
+---
+name: "scalyr_timeseries_query"
+pack: "scalyr"
+action_ref: "scalyr.timeseries_query"
+description: "Run Scalyr timeseries query."
+formats:
+    - "scalyr ts {{ filter }}"
+    - "scalyr ts {{ filter }}"
+result:
+  format: |
+    Results for query *{{execution.parameters.filter}}*:
+
+    {% if execution.status != "succeeded" -%}
+      Execution failed: {{ execution.result.result.message }}
+    {% else -%}
+      {% if execution.result.result.results|length == 0 -%}
+        No results found.
+      {% else -%}
+      {% for match in execution.result.result.results -%}
+        Values: {{ match.values.join(",") }}
+      {%+ endfor %}
+      {% endif -%}
+    {% endif %}

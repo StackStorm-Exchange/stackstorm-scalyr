@@ -1,28 +1,20 @@
 ---
-name: query
+name: power_query
 pack: scalyr
 runner_type: python-script
-description: "Query Scalyr to get logs. See https://www.scalyr.com/help/api#query"
-entry_point: query.py
+description: "Run Scalyr PowerQuery"
+entry_point: power_query.py
 parameters:
-    filter:
+    query:
       type: string
-      description: "Filter matching events using Scalyr expressions. None or empty string match all events."
+      description: "Query to execute in PowerQuery language"
       required: True
-      default: ""
-    maxCount:
-      type: integer
-      description: "Maximum number of records to return."
-      default: 100
     startTime:
       type: string
       description: "Start of time interval, in variety of formats, e.g. 10:30, see https://www.scalyr.com/help/time-reference"
     endTime:
       type: string
       description: "End of time interval, in variety of formats, e.g. 11:30, see https://www.scalyr.com/help/time-reference"
-    columns:
-      type: string
-      description: " specifies which fields to return for each log message, as a comma-delimited list. Omit this parameter (or pass an empty string) to return all fields."
     priority:
       type: string
       default: low
@@ -30,6 +22,9 @@ parameters:
         - "low"
         - "high"
       description: "Query priority."
+    api_url:
+      type: string
+      description: "API url, that overrides the one provided by the config.yaml"
     token:
       type: string
       description: "API token, that overrides the one provided by the config.yaml"
